@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* add blink to the circle */
+
+.circle-blink {
+	animation: blink 1s infinite;
+}
+
+.feature-text {
+	@apply text-gray-200 text-xl sm:text-3xl mt-5 font-medium text-center;
+}
+
+.feature-icon {
+	@apply text-3xl sm:text-4xl text-gray-200;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@layer utilities {
+	.dark-mode {
+		--tw-bg-opacity: 1;
+		background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
+		/* text color*/
+		color: rgba(255, 255, 255, var(--tw-text-opacity));
+	}
+	.light-mode {
+		--tw-bg-opacity: 1;
+		background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+
+		/* text color*/
+		color: rgba(17, 24, 39, var(--tw-text-opacity));
+	}
+}
