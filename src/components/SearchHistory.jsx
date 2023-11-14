@@ -3,10 +3,11 @@ import { ShowFrame } from '.';
 import { useStorage } from '../context/addToStorageContext';
 import { useDarkMode } from '../context/darkMode';
 
+
+
 const SearchHistory = () => {
 	const { searchHistory, setSearchHistory } = useStorage();
 	const { darkMode } = useDarkMode();
-
 	const [showFrame, setShowFrame] = useState(false);
 
 	return (
@@ -19,10 +20,7 @@ const SearchHistory = () => {
 
 				<p className="text-sm  text-gray-300">You can watch video from your search history</p>
 			</h1>
-			<div
-				className="grid grid-cols-1 sm:grid-cols-2
-			 md:grid-cols-4 lg:grid-cols-6 gap-4"
-			>
+			<div>
 				<ShowFrame setShowFrame={setShowFrame} showFrame={showFrame} searchHistory={searchHistory} />
 
 				{showFrame && (

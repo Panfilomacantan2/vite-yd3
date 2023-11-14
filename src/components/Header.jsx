@@ -4,6 +4,8 @@ import { BiSun } from 'react-icons/bi';
 import { BiMoon } from 'react-icons/bi';
 import { useDarkMode } from '../context/darkMode';
 
+// !TODO: ILAGAY SI ANGELINE SA WEB APPLICATION KO ^_^
+
 const Header = () => {
 	const { darkMode: isDarkMode, toggleDarkMode } = useDarkMode();
 
@@ -11,7 +13,7 @@ const Header = () => {
 		<nav className="flex justify-between w-full bg-slate-800 fixed top-0 left-0 px-6 py-6 shadow-lg">
 			<div className="flex items-center justify-start">
 				<ImDownload className="text-white text-3xl" />
-				<span className="inline-block font-normal ml-2 text-2xl text-slate-100">ReacTube</span>
+				<span className="inline-block font-normal ml-2 text-2xl text-slate-100">ASB</span>
 			</div>
 
 			<div className="bg-gray-700 p-1 rounded-md flex items-center justify-end cursor-pointer space-x-3">
