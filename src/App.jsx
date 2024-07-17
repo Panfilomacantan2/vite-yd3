@@ -9,10 +9,10 @@ const App = () => {
 			<Header />
 			<Hero />
 			<Home />
-			<SearchHistory />
+			{/* <SearchHistory /> */}
 			<Footer />
 			<MyLocation />
-			<ToastContainer />
+			<ToastContainer limit={1} />
 		</>
 	);
 };

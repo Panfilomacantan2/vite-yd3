@@ -3,13 +3,14 @@ import { useState, useEffect, useContext, createContext } from 'react';
 const SearchContext = createContext();
 
 const SearchProvider = ({ children }) => {
-	const [searchUrl, setSearchUrl] = useState([]);
+	const [searchUrl, setSearchUrl] = useState(null);
 
 	const contextValue = {
 		searchUrl,
+		setSearchUrl,
 	};
 
-	return <SearchContext.Provider value={{ contextValue }}>{children}</SearchContext.Provider>;
+	return <SearchContext.Provider value={contextValue}>{children}</SearchContext.Provider>;
 };
 
 const useSearchVideoUrl = () => {

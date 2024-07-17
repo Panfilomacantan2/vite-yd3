@@ -1,30 +1,21 @@
 import React from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import { useSearchVideoUrl } from '../context/searchContext';
+
+import { Carousel } from '@mantine/carousel';
+import { Image } from '@mantine/core';
 
 const ShowFrame = ({ searchHistory, setShowFrame, showFrame }) => {
-	const options = {
-		type: 'loop',
-		perPage: 5,
-		autoplay: true,
-		snap: true,
-		gap: "1rem"
-	};
+	const { searchUrl, setSearchUrl } = useSearchVideoUrl();
 
-	return (
-		<Splide options={options}>
-			{searchHistory?.map((videoId) => (
-				<SplideSlide key={videoId}>
-					<img
-						src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
-						alt="youtube thumbnail"
-						className="w-full h-[174px] object-cover rounded-md cursor-pointer hover:scale-105 shadow-sm hover:shadow-gray-700"
-						onClick={() => setShowFrame(!showFrame)}
-					/>
-				</SplideSlide>
-			))}
-		</Splide>
-	);
+	const slides = searchHistory?.map((videoId) => (
+		<Carousel.Slide key={videoId}>
+			<Image src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} onClick={() => setSearchUrl(videoId)} />
+		</Carousel.Slide>
+	));
+
+	return <Carousel withIndicators>{slides}</Carousel>;
 };
 
 export default ShowFrame;

@@ -1,9 +1,21 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+	darkMode: 'class',
 	theme: {
-		darkMode: "class",
-		extend: {},
+		extend: {
+			colors: {
+				labelColor: '#374146',
+				darkTextColor: '#1E293B',
+				lightBackgroundColor: '#ECF1F1',
+				lightTextColor: '#374146',
+				lightBorderColor: '#92A9BD',
+			},
+		},
 	},
-	plugins: [],
+	plugins: [require('daisyui')],
+
+	daisyui: {
+		themes: ['light', 'dark'],
+	},
 };

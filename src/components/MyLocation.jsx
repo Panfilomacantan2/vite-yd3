@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 const MyLocation = () => {
 	const [locationInfo, setLocationInfo] = useState(null);
 	const [loading, setLoading] = useState(false);
@@ -13,8 +12,6 @@ const MyLocation = () => {
 
 	const getUserLocation = () => {
 		// get longitude and latitude coordinates
-
-		
 		navigator.geolocation?.getCurrentPosition((position) => {
 			const { longitude, latitude } = position.coords;
 			// get city name from coordinates
@@ -28,18 +25,20 @@ const MyLocation = () => {
 	};
 
 	const location = (
-		<div className="px-6 py-6 text-slate-800">
-			<div className="flex justify-center items-center font-medium">
-				<span className="flex h-3 w-3 relative mr-2">
+		<div className="px-6 py-6 text-white data-theme='dark'">
+			<div className="rounded-md flex justify-center items-center font-thin  gap-2 bg-slate-800 py-4 px-2">
+				<span className="flex h-3 w-3 relative">
 					<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
 					<span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
 				</span>
 				{loading && 'Loading...'}
-				<p>{locationInfo && locationInfo.city}</p>
-				&nbsp;
-				<p>{locationInfo && locationInfo.countryCode}</p>
-				&nbsp;
-				<p>{locationInfo && locationInfo.principalSubdivision}</p>
+				<p className='text-[12px]'>
+					{locationInfo && locationInfo.city}
+					&nbsp;
+					{locationInfo && locationInfo.countryCode}
+					&nbsp;
+					{locationInfo && locationInfo.principalSubdivision}
+				</p>
 			</div>
 		</div>
 	);

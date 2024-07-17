@@ -4,16 +4,15 @@
 
 /* add blink to the circle */
 
+body {
+	font-family: 'Open Sans', sans-serif;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 .circle-blink {
 	animation: blink 1s infinite;
-}
-
-.feature-text {
-	@apply text-gray-200 text-xl sm:text-3xl mt-5 font-medium text-center;
-}
-
-.feature-icon {
-	@apply text-3xl sm:text-4xl text-gray-200;
 }
 
 @keyframes blink {
@@ -26,6 +25,14 @@
 	100% {
 		opacity: 0;
 	}
+}
+
+.feature-text {
+	@apply text-xl sm:text-3xl mt-5 font-medium text-center;
+}
+
+.feature-icon {
+	@apply text-3xl sm:text-4xl;
 }
 
 @layer utilities {
