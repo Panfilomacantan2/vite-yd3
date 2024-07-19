@@ -6,7 +6,7 @@ const StorageProvider = ({ children }) => {
 	const [searchHistory, setSearchHistory] = useState([]);
 
 	useEffect(() => {
-		let storage = JSON.parse(localStorage.getItem('items'));
+		let storage = JSON.parse(localStorage.getItem('items')) || []
 
 		if (storage) {
 			setSearchHistory(storage);
