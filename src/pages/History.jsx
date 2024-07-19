@@ -59,27 +59,27 @@ const History = () => {
 				<AutoFitLayout className="mt-20">
 					{videoData.map((video, idx) => (
 						<div className="relative group bg-gray-200 rounded-lg overflow-hidden" key={idx}>
-							<Image src={video.snippet.thumbnails.maxres?.url || `https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`} className="grayscale group-hover:grayscale-0" loading="eager" />
+							<Image src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} className="grayscale group-hover:grayscale-0" loading="eager" />
 
 							<div className="px-4 py-4">
 								<div>
-									<h2 className="text-[14px] font-semibold">{video.snippet.title}</h2>
+									<h2 className="text-[14px] font-semibold">{video?.snippet?.title}</h2>
 									{/* <p className="text-sm">{video.snippet.description}</p> */}
 								</div>
 
 								<div>
 									<div className="flex gap-x-2 mt-2">
 										<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
-											<AiOutlineLike className="text-lg" /> {millify(video.statistics.likeCount)} likes
+											<AiOutlineLike className="text-lg" /> {millify(video?.statistics?.likeCount)} likes
 										</p>
 										<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
 											<AiOutlineFieldTime className="text-lg" />
-											{dayjs(video.snippet.publishedAt).fromNow()}
+											{dayjs(video?.snippet?.publishedAt).fromNow()}
 										</p>
 									</div>
 								</div>
 							</div>
-							<Clipboard videoId={video.id} />
+							<Clipboard videoId={video?.id} />
 						</div>
 					))}
 				</AutoFitLayout>
