@@ -25,11 +25,11 @@ const Clipboard = ({ videoId, children }) => {
 	};
 
 	return (
-		<div className="mt-4">
+		<div className="absolute bottom-2 right-2">
 			<CopyToClipboard text={textToCopy} onCopy={handleCopy}>
 				<button className={`flex items-center justify-center gap-x-1 text-[16px] ${copyStatus ? 'bg-teal-600' : 'bg-sky-600'} text-white px-2 py-1 rounded-md`}>
 					{copyStatus ? <FaCheck /> : <MdOutlineContentCopy />}
-					{copyStatus ? 'copied' : 'copy'}
+					{/* {copyStatus ? 'copied' : 'copy'} */}
 				</button>
 			</CopyToClipboard>
 		</div>
