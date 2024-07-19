@@ -4,7 +4,7 @@ import { Image } from '@mantine/core';
 import { useStorage } from '../context/addToStorageContext';
 import { IoMdLink } from 'react-icons/io';
 
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import millify from 'millify';
 
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -48,8 +48,7 @@ const History = () => {
 		}
 	}, [searchHistory]);
 
-	console.log({ videoData });
-	console.log({ loading });
+	// console.log({ videoData });
 
 	return (
 		<>
@@ -79,7 +78,9 @@ const History = () => {
 										</p>
 										<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
 											<AiOutlineFieldTime className="text-lg" />
-											{dayjs(video?.snippet?.publishedAt).fromNow()}
+											{dayjs(video.snippet.publishedAt).fromNow()}
+											{/* {console.log(video?.snippet?.publishedAt)} */}
+											{console.log(dayjs(video.snippet.publishedAt).fromNow())}
 										</p>
 									</div>
 								</div>
