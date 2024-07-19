@@ -36,16 +36,20 @@ const History = () => {
 			} catch (error) {
 				console.error('Error fetching video data:', error);
 				setLoading(false);
+			} finally {
+				setLoading(false);
 			}
 		};
 
 		if (searchHistory.length > 0) {
 			fetchData();
+		} else {
+			setLoading(false);
 		}
 	}, [searchHistory]);
 
-	// console.log({ videoData });
-	// console.log({ loading });
+	console.log({ videoData });
+	console.log({ loading });
 
 	return (
 		<>
@@ -57,7 +61,7 @@ const History = () => {
 				</div>
 			) : videoData.length > 0 ? (
 				<AutoFitLayout className="mt-20">
-					{videoData.map((video, idx) => (
+					{videoData?.map((video, idx) => (
 						<div className="relative group bg-gray-200 rounded-lg overflow-hidden" key={idx}>
 							<Image src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} className="grayscale group-hover:grayscale-0" loading="eager" />
 
@@ -70,7 +74,8 @@ const History = () => {
 								<div>
 									<div className="flex gap-x-2 mt-2">
 										<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
-											<AiOutlineLike className="text-lg" /> {millify(video?.statistics?.likeCount)} likes
+											<AiOutlineLike className="text-lg" /> {millify(parseInt(!video?.statistics?.likeCount ? 0 : video?.statistics?.likeCount))}{' '}
+											{parseInt(!video?.statistics?.likeCount ? 0 : video?.statistics?.likeCount) > 1 ? 'Likes' : 'Like'}
 										</p>
 										<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
 											<AiOutlineFieldTime className="text-lg" />
