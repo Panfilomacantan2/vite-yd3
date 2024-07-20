@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import AutoFitLayout from '../components/AutoFitLayout';
 import { Image } from '@mantine/core';
 import { useStorage } from '../context/addToStorageContext';
-import { IoMdLink } from 'react-icons/io';
-
 import dayjs from 'dayjs';
 import millify from 'millify';
-
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { AiOutlineLike } from 'react-icons/ai';
 import { AiOutlineFieldTime } from 'react-icons/ai';
 import Header from '../components/Header';
 import Clipboard from '../utils/CopyToClipboard';
+import { BlurImage } from '../components/BlurImage';
+import { Blurhash } from 'react-blurhash';
 
 const History = () => {
 	const { searchHistory } = useStorage();
@@ -62,7 +61,10 @@ const History = () => {
 				<AutoFitLayout className="mt-20">
 					{videoData?.map((video, idx) => (
 						<div className="relative group bg-gray-200 rounded-lg overflow-hidden" key={idx}>
-							<Image src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} className="grayscale group-hover:grayscale-0" loading="eager" />
+							<div className='min-h-40'>
+								<BlurImage img={<img src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} alt="Placeholder" />} video={video} />
+							</div>
+							{/* <Image src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} className="grayscale group-hover:grayscale-0" loading="lazy" /> */}
 
 							<div className="px-4 py-4">
 								<div>

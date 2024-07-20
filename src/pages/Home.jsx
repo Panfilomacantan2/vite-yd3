@@ -81,6 +81,7 @@ const Home = () => {
 					progress: undefined,
 				});
 
+        checkRateLimit();
 				items.push(youtubeID);
 				localStorage.setItem('items', JSON.stringify(items));
 
@@ -91,7 +92,6 @@ const Home = () => {
 			});
 
 		inputRef.current.value = '';
-		checkRateLimit();
 	}
 
 	const checkRateLimit = async () => {
