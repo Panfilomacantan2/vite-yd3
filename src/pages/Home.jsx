@@ -52,8 +52,19 @@ const Home = () => {
 		const items = JSON.parse(localStorage.getItem('items')) || [];
 
 		if (items.includes(youtubeID)) {
-			toast.error(`${youtubeID} already exists`);
-			return;
+			toast.error(`Youtube video with the of ${youtubeID} is already exists!`, {
+				position: 'top-right',
+				autoClose: 2000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+		} else {
+			items.push(youtubeID);
+			localStorage.setItem('items', JSON.stringify(items));
+			setSearchHistory((prevSearch) => [...prevSearch, youtubeID]);
 		}
 
 		const options = {
@@ -81,11 +92,7 @@ const Home = () => {
 					progress: undefined,
 				});
 
-        checkRateLimit();
-				items.push(youtubeID);
-				localStorage.setItem('items', JSON.stringify(items));
-
-				setSearchHistory((prevSearch) => [...prevSearch, youtubeID]);
+				checkRateLimit();
 			})
 			.catch(function (error) {
 				console.error(error);
@@ -138,7 +145,7 @@ const Home = () => {
 	return (
 		<div className={`min-h-screen w-full py-10 px-6 rounded-md mt-5`}>
 			<div className=" flex justify-center items-center text-slate-800 text-lg my-10">
-				<ApiStats apiLimit={apiLimit}/>
+				<ApiStats apiLimit={apiLimit} />
 			</div>
 
 			<form onSubmit={handleSearch} className="group w-full md:w-[600px] mx-auto flex">

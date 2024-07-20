@@ -1,5 +1,6 @@
 import React from 'react';
-import { AiOutlineFieldTime, AiOutlineLike } from 'react-icons/ai';
+import { AiOutlineFieldTime } from 'react-icons/ai';
+import { MdOutlineFileDownload } from 'react-icons/md';
 
 const ApiStats = ({ apiLimit }) => {
 	return (
@@ -17,7 +18,7 @@ const ApiStats = ({ apiLimit }) => {
 				<div className="stat-title">Rate Limit Remaining</div>
 				<div className="stat-value text-sky-700">{apiLimit.rateLimitRemaining}</div>
 				<div className="stat-desc flex items-center">
-					<AiOutlineLike className="inline-block mr-1" />
+					<MdOutlineFileDownload className="inline-block mr-1" />
 					{apiLimit.rateLimitRemaining} downloads remaining
 				</div>
 			</div>
