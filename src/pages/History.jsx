@@ -58,39 +58,48 @@ const History = () => {
 					<p className="text-gray-400">Loading...</p>
 				</div>
 			) : videoData.length > 0 ? (
-				<AutoFitLayout className="mt-20">
-					{videoData?.map((video, idx) => (
-						<div className="relative group bg-gray-200 rounded-lg overflow-hidden" key={idx}>
-							<div className='min-h-40'>
-								<BlurImage img={<img src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} alt="Placeholder" />} video={video} />
-							</div>
-							{/* <Image src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} className="grayscale group-hover:grayscale-0" loading="lazy" /> */}
+				<div>
+					<div className="text-2xl font-bold mt-28 space-y-2 px-5 md:px-20">
+						<h1>Search History</h1>
+						<p className='text-sm font-normal'>
+							{searchHistory.length} {searchHistory.length > 1 ? 'videos' : 'video'} found in search history
+						</p>
+					</div>
 
-							<div className="px-4 py-4">
-								<div>
-									<h2 className="text-[14px] font-semibold">{video?.snippet?.title}</h2>
-									{/* <p className="text-sm">{video.snippet.description}</p> */}
+					<AutoFitLayout className="">
+						{videoData?.map((video, idx) => (
+							<div className="relative group bg-gray-200 rounded-lg overflow-hidden" key={idx}>
+								<div className="min-h-40">
+									<BlurImage img={<img src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} alt="Placeholder" />} video={video} />
 								</div>
+								{/* <Image src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} className="grayscale group-hover:grayscale-0" loading="lazy" /> */}
 
-								<div>
-									<div className="flex gap-x-2 mt-2">
-										<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
-											<AiOutlineLike className="text-lg" /> {millify(parseInt(!video?.statistics?.likeCount ? 0 : video?.statistics?.likeCount))}{' '}
-											{parseInt(!video?.statistics?.likeCount ? 0 : video?.statistics?.likeCount) > 1 ? 'Likes' : 'Like'}
-										</p>
-										<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
-											<AiOutlineFieldTime className="text-lg" />
-											{dayjs(video.snippet.publishedAt).fromNow()}
-											{/* {console.log(video?.snippet?.publishedAt)} */}
-											{console.log(dayjs(video.snippet.publishedAt).fromNow())}
-										</p>
+								<div className="px-4 py-4">
+									<div>
+										<h2 className="text-[14px] font-semibold">{video?.snippet?.title}</h2>
+										{/* <p className="text-sm">{video.snippet.description}</p> */}
+									</div>
+
+									<div>
+										<div className="flex gap-x-2 mt-2">
+											<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
+												<AiOutlineLike className="text-lg" /> {millify(parseInt(!video?.statistics?.likeCount ? 0 : video?.statistics?.likeCount))}{' '}
+												{parseInt(!video?.statistics?.likeCount ? 0 : video?.statistics?.likeCount) > 1 ? 'Likes' : 'Like'}
+											</p>
+											<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
+												<AiOutlineFieldTime className="text-lg" />
+												{dayjs(video.snippet.publishedAt).fromNow()}
+												{/* {console.log(video?.snippet?.publishedAt)} */}
+												{console.log(dayjs(video.snippet.publishedAt).fromNow())}
+											</p>
+										</div>
 									</div>
 								</div>
+								<Clipboard videoId={video?.id} />
 							</div>
-							<Clipboard videoId={video?.id} />
-						</div>
-					))}
-				</AutoFitLayout>
+						))}
+					</AutoFitLayout>
+				</div>
 			) : (
 				<div className="h-screen flex flex-col items-center justify-center gap-4">
 					<p className="text-gray-400">No search history found!</p>
