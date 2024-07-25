@@ -120,10 +120,10 @@ const Home = () => {
 			const rateLimitReset = response.headers['x-ratelimit-request-reset'];
 			const freePlanResetTime = response.headers['x-ratelimit-rapid-free-plans-hard-limit-reset'];
 
-			console.log(`Rate Limit: ${rateLimit}`);
-			console.log(`Rate Limit Remaining: ${rateLimitRemaining}`);
-			console.log(`Rate Limit Reset Time: ${new Date(rateLimitReset * 1000).toLocaleString()}`);
-			console.log(`Free Plan Reset Time: ${new Date(Date.now() + freePlanResetTime * 1000).toLocaleString()}`);
+			// console.log(`Rate Limit: ${rateLimit}`);
+			// console.log(`Rate Limit Remaining: ${rateLimitRemaining}`);
+			// console.log(`Rate Limit Reset Time: ${new Date(rateLimitReset * 1000).toLocaleString()}`);
+			// console.log(`Free Plan Reset Time: ${new Date(Date.now() + freePlanResetTime * 1000).toLocaleString()}`);
 
 			const rateLimitResetTime = new Date(Date.now() + freePlanResetTime * 1000).toLocaleString();
 

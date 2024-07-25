@@ -7,7 +7,7 @@ const ApiStats = ({ apiLimit }) => {
 		<div className="stats stats-vertical md:stats-horizontal">
 			<div className="stat place-items-center">
 				<div className="stat-title">Rate Limit</div>
-				<div className="stat-value">{apiLimit.rateLimit}</div>
+				<div className="stat-value">{!apiLimit.rateLimit ? <span className="text-sm">Loading...</span> : apiLimit.rateLimit}</div>
 				<div className="stat-desc flex items-center">
 					<AiOutlineFieldTime className="inline-block mr-1" />
 					{apiLimit.rateLimit} requests per minute
@@ -16,7 +16,7 @@ const ApiStats = ({ apiLimit }) => {
 
 			<div className="stat place-items-center">
 				<div className="stat-title">Rate Limit Remaining</div>
-				<div className="stat-value text-sky-700">{apiLimit.rateLimitRemaining}</div>
+				<div className="stat-value text-sky-700">{!apiLimit.rateLimitRemaining ? <span className="text-sm">Loading...</span> : apiLimit.rateLimitRemaining}</div>
 				<div className="stat-desc flex items-center">
 					<MdOutlineFileDownload className="inline-block mr-1" />
 					{apiLimit.rateLimitRemaining} downloads remaining
