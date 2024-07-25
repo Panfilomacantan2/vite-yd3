@@ -29,12 +29,15 @@ function BlurImage({ img, video }) {
 		};
 	}, [src, srcSet, sizes]);
 
-	console.log(video);
-
 	return (
-		// todo! return the image to history and return the img prop to be able to use it for inspecting the current of image
+		
 		<>
-			<Image ref={imgRef} src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} className="h-full grayscale group-hover:grayscale-0" loading="lazy" />
+			<Image
+				ref={imgRef}
+				src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`}
+				className="h-full grayscale group-hover:grayscale-0"
+				loading="lazy"
+			/>
 
 			{!visible && (
 				<div className="absolute inset-0 flex items-center justify-center">

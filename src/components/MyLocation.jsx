@@ -5,9 +5,9 @@ const MyLocation = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		console.log({ loading });
+		// console.log({ loading });
 		getUserLocation();
-		console.log({ loading });
+		// console.log({ loading });
 	}, []);
 
 	const getUserLocation = () => {

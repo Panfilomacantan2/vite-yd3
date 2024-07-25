@@ -2,10 +2,8 @@ import React, { useEffect } from 'react';
 import { BsYoutube, BsFilm } from 'react-icons/bs';
 import { AiOutlineGift, AiOutlineCheck } from 'react-icons/ai';
 import { FiDownload } from 'react-icons/fi';
-import { useDarkMode } from '../context/darkMode';
 
 const Hero = () => {
-	const { darkMode } = useDarkMode();
 	return (
 		<div className="w-full px-5 sm:px-10 md:px-20 ">
 			{/* Featured */}

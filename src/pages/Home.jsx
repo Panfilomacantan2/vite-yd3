@@ -2,12 +2,9 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { youtube_parser } from '../utils';
 import { CgArrowRight } from 'react-icons/cg';
-import { HiDownload } from 'react-icons/hi';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useStorage } from '../context/addToStorageContext';
-import { useDarkMode } from '../context/darkMode';
-import { useUserStore } from '../store/userStore';
 import { ApiStats } from '../components';
 
 const Home = () => {
@@ -22,7 +19,7 @@ const Home = () => {
 		freePlanResetTime: null,
 	});
 
-	console.log(videoId);
+	// console.log(videoId);
 
 	function handleSearch(e) {
 		e.preventDefault();
@@ -37,12 +34,12 @@ const Home = () => {
 				draggable: true,
 				progress: false,
 			});
-			console.log(inputRef.current.value);
+			// console.log(inputRef.current.value);
 			return;
 		}
 		setUrlSearch(inputRef.current.value);
 
-		console.log(inputRef.current.value);
+		// console.log(inputRef.current.value);
 
 		const youtubeID = youtube_parser(inputRef.current.value);
 
@@ -114,7 +111,7 @@ const Home = () => {
 
 		try {
 			const response = await axios.request(options);
-			console.log(response);
+			// console.log(response);
 			const rateLimit = response.headers['x-ratelimit-request-limit'];
 			const rateLimitRemaining = response.headers['x-ratelimit-request-remaining'];
 			const rateLimitReset = response.headers['x-ratelimit-request-reset'];

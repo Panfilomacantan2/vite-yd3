@@ -11,6 +11,7 @@ import Header from '../components/Header';
 import Clipboard from '../utils/CopyToClipboard';
 import { BlurImage } from '../components/BlurImage';
 import { Blurhash } from 'react-blurhash';
+import ScrollButton from '../components/ScrollButton';
 
 const History = () => {
 	const { searchHistory } = useStorage();
@@ -51,6 +52,7 @@ const History = () => {
 
 	return (
 		<>
+			<ScrollButton />
 			<Header />
 
 			{loading ? (
@@ -61,7 +63,7 @@ const History = () => {
 				<div>
 					<div className="text-2xl font-bold mt-28 space-y-2 px-5 md:px-20">
 						<h1>Search History</h1>
-						<p className='text-sm font-normal'>
+						<p className="text-sm font-normal">
 							{searchHistory.length} {searchHistory.length > 1 ? 'videos' : 'video'} found in search history
 						</p>
 					</div>
@@ -90,7 +92,6 @@ const History = () => {
 												<AiOutlineFieldTime className="text-lg" />
 												{dayjs(video.snippet.publishedAt).fromNow()}
 												{/* {console.log(video?.snippet?.publishedAt)} */}
-												{console.log(dayjs(video.snippet.publishedAt).fromNow())}
 											</p>
 										</div>
 									</div>

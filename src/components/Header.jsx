@@ -1,23 +1,10 @@
 import { ImDownload } from 'react-icons/im';
-import { BiSun } from 'react-icons/bi';
-import { BiMoon } from 'react-icons/bi';
-import { useDarkMode } from '../context/darkMode';
 import { MdOutlineHistory } from 'react-icons/md';
 import { IoIosArrowRoundBack } from 'react-icons/io';
-
-import { themeChange } from 'theme-change';
-import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const Header = () => {
-	useEffect(() => {
-		themeChange(false);
-		// 👆 false parameter is required for react project
-	}, []);
-
 	const location = useLocation();
-
-	const { darkMode: isDarkMode, toggleDarkMode } = useDarkMode();
 
 	return (
 		<nav className=" z-10 flex justify-between items-center w-full bg-slate-700 fixed top-0 left-0 px-5 md:px-20 py-5 shadow-lg">
