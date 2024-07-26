@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useStorage } from '../context/addToStorageContext';
 import { ApiStats } from '../components';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	const inputRef = useRef(null);
@@ -152,7 +153,10 @@ const Home = () => {
 				</button>
 			</form>
 			<p className="text-center mt-5 text-slate-700 text-[14px]">
-				Please choose your favorite song. <span className="text-sky-500">Download here.</span>
+				Please choose your favorite song.{' '}
+				<Link to="/search" className="text-sky-500">
+					Download here.
+				</Link>
 			</p>
 
 			<div className="space-y-5 mt-12 w-full flex justify-center items-center flex-col">
@@ -164,14 +168,14 @@ const Home = () => {
 					<img src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} alt="youtube thumbnail" className="w-full md:w-[520px] rounded-md border-dashed mx-auto" loading="eager" />
 				)}
 
-				<a
+				<Link
 					rel="noreferrer"
 					target="_blank"
-					href={urlSearch}
+					to={urlSearch}
 					className={`w-full md:w-[520px] py-3 bg-sky-700 text-white rounded-md text-center font-semibold hover:bg-sky-800 flex justify-center items-center gap-2 mx-auto ${!videoId && 'cursor-not-allowed'}`}
 				>
 					Download
-				</a>
+				</Link>
 			</div>
 		</div>
 	);
