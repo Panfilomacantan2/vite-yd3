@@ -9,12 +9,11 @@ const Header = () => {
 	const path = {
 		'/': '/history',
 		'/history': '/',
-		'/search': '/',
+		
 	};
 
 	const pathname = path[location.pathname];
-
-	console.log(pathname);
+	// console.log(pathname);
 
 	return (
 		<nav className=" z-10 flex justify-between items-center w-full bg-slate-700 fixed top-0 left-0 px-5 md:px-20 py-5 shadow-lg">
@@ -28,7 +27,7 @@ const Header = () => {
 			<ul>
 				<li className="inline-block">
 					<Link to={pathname} className="flex items-center justify-center text-white hover:bg-sky-600 bg-sky-500 px-4 py-[6px] gap-1 rounded-md text-[14px]">
-						<IoIosArrowRoundBack size={18} /> {''} <span>Back</span>
+						<IoIosArrowRoundBack size={18} /> {''} <span>{location.pathname === '/' ? 'View History' : 'Back'}</span>
 					</Link>
 				</li>
 			</ul>

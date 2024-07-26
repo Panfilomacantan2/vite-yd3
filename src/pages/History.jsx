@@ -48,25 +48,6 @@ const History = () => {
 		}
 	}, [searchHistory]);
 
-	useEffect(() => {
-		const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=sining&type=video&key=${import.meta.env.VITE_YOUTUBE_DATA_API_KEY}`;
-
-		const searchVideo = async () => {
-			try {
-				const res = await fetch(url);
-				const data = await res.json();
-
-				console.log(data);
-			} catch (error) {
-				console.error('Error fetching video data:', error);
-			} finally {
-				setLoading(false);
-			}
-		};
-
-		searchVideo();
-	}, []);
-
 	return (
 		<>
 			<ScrollButton />
@@ -89,7 +70,7 @@ const History = () => {
 						{videoData?.map((video, idx) => (
 							<div className="relative group bg-gray-200 rounded-lg overflow-hidden" key={idx}>
 								<div className="min-h-40">
-									<BlurImage img={<img src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} alt="Placeholder" />} video={video} />
+									<BlurImage img={<img src={video?.snippet?.thumbnails?.maxres?.url} alt="Placeholder" />} video={video} />
 								</div>
 								{/* <Image src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} className="grayscale group-hover:grayscale-0" loading="lazy" /> */}
 

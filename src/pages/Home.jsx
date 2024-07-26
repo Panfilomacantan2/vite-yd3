@@ -118,11 +118,6 @@ const Home = () => {
 			const rateLimitReset = response.headers['x-ratelimit-request-reset'];
 			const freePlanResetTime = response.headers['x-ratelimit-rapid-free-plans-hard-limit-reset'];
 
-			// console.log(`Rate Limit: ${rateLimit}`);
-			// console.log(`Rate Limit Remaining: ${rateLimitRemaining}`);
-			// console.log(`Rate Limit Reset Time: ${new Date(rateLimitReset * 1000).toLocaleString()}`);
-			// console.log(`Free Plan Reset Time: ${new Date(Date.now() + freePlanResetTime * 1000).toLocaleString()}`);
-
 			const rateLimitResetTime = new Date(Date.now() + freePlanResetTime * 1000).toLocaleString();
 
 			setApiLimit({
@@ -154,8 +149,8 @@ const Home = () => {
 			</form>
 			<p className="text-center mt-5 text-slate-700 text-[14px]">
 				Please choose your favorite song.{' '}
-				<Link to="/search" className="text-sky-500">
-					Download here.
+				<Link to="https://www.youtube.com/" target="_blank" className="text-sky-500">
+					Search here.
 				</Link>
 			</p>
 
