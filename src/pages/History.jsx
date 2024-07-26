@@ -60,9 +60,9 @@ const History = () => {
 			) : videoData.length > 0 ? (
 				<div>
 					<div className="text-2xl font-bold mt-28 space-y-2 px-5 md:px-20">
-						<h1>Search History</h1>
+						<h1>Download History</h1>
 						<p className="text-sm font-normal">
-							{searchHistory.length} {searchHistory.length > 1 ? 'videos' : 'video'} found in search history
+							{searchHistory.length} {searchHistory.length > 1 ? 'videos' : 'video'} found in download history
 						</p>
 					</div>
 
