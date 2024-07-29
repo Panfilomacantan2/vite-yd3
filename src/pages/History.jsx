@@ -67,7 +67,7 @@ const History = () => {
 					</div>
 
 					<AutoFitLayout className="">
-						{videoData?.map((video, idx) => (
+						{[...videoData]?.reverse().map((video, idx) => (
 							<div className="relative group bg-gray-200 rounded-lg overflow-hidden" key={idx}>
 								<div className="min-h-40">
 									<BlurImage img={<img src={video?.snippet?.thumbnails?.maxres?.url} alt="Placeholder" />} video={video} />

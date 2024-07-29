@@ -135,6 +135,8 @@ const Home = () => {
 		checkRateLimit();
 	}, []);
 
+	// todo: remove the autocomplete in input
+
 	return (
 		<div className={`min-h-screen w-full py-10 px-6 rounded-md mt-5`}>
 			<div className=" flex justify-center items-center text-slate-800 text-lg my-10">
@@ -142,7 +144,7 @@ const Home = () => {
 			</div>
 
 			<form onSubmit={handleSearch} className="group w-full md:w-[600px] mx-auto flex">
-				<input className="border-sky-800 border-4 border-r-0 px-5 py-4 outline-none w-full" type="text" placeholder="Paste the URL here..." name="urlSearch" ref={inputRef} />
+				<input className="border-sky-800 border-4 border-r-0 px-5 py-4 outline-none w-full" type="text" placeholder="Paste the URL here..." name="urlSearch" ref={inputRef} autoComplete="off"/>
 				<button className="bg-sky-700 hover:bg-sky-800 text-slate-50 border-none py-2 px-6 flex justify-center items-center" type="submit">
 					<CgArrowRight className="text-white text-2xl group-hover:translate-x-1 duration-300" />
 				</button>
