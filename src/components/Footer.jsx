@@ -35,7 +35,7 @@ const Footer = () => {
 					<p className="text-gray-200">
 						<span className="text-sky-500 mb-10">Hosted by </span>
 						<a href="https://www.netlify.com/" target="_blank" className="text-slate-800">
-							Netlify
+							Vercel
 						</a>
 					</p>
 				</div>
