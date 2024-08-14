@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ShowFrame } from '.';
 import { useStorage } from '../context/addToStorageContext';
-import { useDarkMode } from '../context/darkMode';
 import { PlayVideo } from './';
 
 const SearchHistory = () => {
 	const { searchHistory, setSearchHistory } = useStorage();
-	const { darkMode } = useDarkMode();
 	const [showFrame, setShowFrame] = useState(false);
 
 	return (

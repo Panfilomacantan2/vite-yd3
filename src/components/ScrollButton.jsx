@@ -23,7 +23,7 @@ const ScrollButton = () => {
 
 	return (
 		showButton && (
-			<span className="w-10 h-10 cursor-pointer rounded-full fixed text-lg bottom-4 right-4 z-[200]  bg-black text-white flex justify-center items-center" onClick={goToTop}>
+			<span className="w-10 h-10 cursor-pointer rounded-full fixed text-lg bottom-4 right-4 z-[200]  bg-blue-700 text-white flex justify-center items-center" onClick={goToTop}>
 				<FaAngleUp />
 			</span>
 		)

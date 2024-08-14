@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import AutoFitLayout from '../components/AutoFitLayout';
-import { Image } from '@mantine/core';
 import { useStorage } from '../context/addToStorageContext';
 import dayjs from 'dayjs';
 import millify from 'millify';
@@ -10,7 +9,6 @@ import { AiOutlineFieldTime } from 'react-icons/ai';
 import Header from '../components/Header';
 import Clipboard from '../utils/CopyToClipboard';
 import { BlurImage } from '../components/BlurImage';
-import { Blurhash } from 'react-blurhash';
 import ScrollButton from '../components/ScrollButton';
 
 const History = () => {
@@ -55,7 +53,7 @@ const History = () => {
 
 			{loading ? (
 				<div className="h-screen flex flex-col items-center justify-center gap-4">
-					<p className="text-gray-400">Loading...</p>
+					<p className="">Loading...</p>
 				</div>
 			) : videoData.length > 0 ? (
 				<div>
@@ -68,9 +66,13 @@ const History = () => {
 
 					<AutoFitLayout className="">
 						{[...videoData]?.reverse().map((video, idx) => (
-							<div className="relative group bg-gray-200 rounded-lg overflow-hidden" key={idx}>
+							<div className="relative group rounded-lg overflow-hidden" key={idx}>
 								<div className="min-h-40">
-									<BlurImage img={<img src={video?.snippet?.thumbnails?.maxres?.url} alt="Placeholder" />} video={video} />
+									{!video?.snippet?.thumbnails?.maxres?.url ? (
+										<img src={`https://via.placeholder.com/800x450?text=Image+Not+Found`} alt="Placeholder" />
+									) : (
+										<BlurImage img={<img src={video?.snippet?.thumbnails?.maxres?.url} alt="Placeholder" />} video={video} />
+									)}
 								</div>
 								{/* <Image src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} className="grayscale group-hover:grayscale-0" loading="lazy" /> */}
 
@@ -80,13 +82,13 @@ const History = () => {
 										{/* <p className="text-sm">{video.snippet.description}</p> */}
 									</div>
 
-									<div>
+									<div className=" text-muted-foreground">
 										<div className="flex gap-x-2 mt-2">
-											<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
+											<p className="flex items-center justify-center text-[12px] font-bold">
 												<AiOutlineLike className="text-lg" /> {millify(parseInt(!video?.statistics?.likeCount ? 0 : video?.statistics?.likeCount))}{' '}
 												{parseInt(!video?.statistics?.likeCount ? 0 : video?.statistics?.likeCount) > 1 ? 'Likes' : 'Like'}
 											</p>
-											<p className="flex items-center justify-center text-[12px] text-gray-600 font-bold">
+											<p className="flex items-center justify-center text-[12px] font-bold">
 												<AiOutlineFieldTime className="text-lg" />
 												{dayjs(video.snippet.publishedAt).fromNow()}
 												{/* {console.log(video?.snippet?.publishedAt)} */}
@@ -101,7 +103,7 @@ const History = () => {
 				</div>
 			) : (
 				<div className="h-screen flex flex-col items-center justify-center gap-4">
-					<p className="text-gray-400">No search history found!</p>
+					<p className="">No search history found!</p>
 				</div>
 			)}
 		</>

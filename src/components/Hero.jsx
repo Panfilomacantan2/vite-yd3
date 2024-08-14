@@ -1,67 +1,57 @@
-import React, { useEffect } from 'react';
-import { BsYoutube, BsFilm } from 'react-icons/bs';
-import { AiOutlineGift, AiOutlineCheck } from 'react-icons/ai';
-import { FiDownload } from 'react-icons/fi';
+import React from 'react';
+import { BsYoutube } from 'react-icons/bs';
+import { featuredText } from '@/constant';
+import { cn } from '@/lib/utils';
+import { Download } from 'lucide-react';
 
 const Hero = () => {
 	return (
-		<div className="w-full px-5 sm:px-10 md:px-20 ">
-			{/* Featured */}
-			<div className={`mt-32`}>
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 lg:gap-5 text-center">
-					<div className=" p-6 border border-lightBorderColor flex flex-col justify-center items-center rounded-md">
-						<div className="flex justify-center items-center">
-							<AiOutlineGift className="feature-icon" />
-						</div>
-						<div className="flex flex-col justify-center items-center">
-							<h1 className="text-lg font-bold text-lightTextColor">Free Download</h1>
+		<div className="w-full px-5 sm:px-10 md:px-20 py-20">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-5 text-center py-20">
+				{featuredText?.map((featured, idx) => {
+					return (
+						<div key={idx} className={cn(`shadow-none border border-border/80 rounded-md relative shrink-0 flex-1`, {})}>
+							<div className="flex justify-center -translate-y-[1px]">
+								<div className="w-full">
+									<div
+										className={cn(`h-[1px] bg-gradient-to-r from-transparent to-transparent  w-full`, {
+											'bg-gradient-to-r from-transparent via-pink-600 to-transparent': featured.color === 'pink',
+											'bg-gradient-to-r from-transparent via-teal-600 to-transparent': featured.color === 'teal',
+											'bg-gradient-to-r from-transparent via-purple-600 to-transparent': featured.color === 'purple',
+											'bg-gradient-to-r from-transparent via-yellow-600 to-transparent': featured.color === 'yellow',
+										})}
+									></div>
+								</div>
+							</div>
+							<div className="flex flex-col justify-center items-center text-center p-8">
+								<div className="flex justify-center items-center w-16 h-16 rounded-full shadow-lg">
+									<Download className="w-8 h-8 text-foreground" />
+								</div>
 
-							<p className=" text-lightTextColor">No ads, no interruptions</p>
+								<p
+									className={cn(`font-bold mb-2 text-green-600 text-xl via-md:text-3xl lg:text-2xl`, {
+										'text-pink-500': featured.color === 'pink',
+										'text-teal-500': featured.color === 'teal',
+										'text-purple-500': featured.color === 'purple',
+										'text-yellow-500': featured.color === 'yellow',
+									})}
+								>
+									{featured.title}
+								</p>
+								<p className="mb-0 text-base leading-5 text-foreground/70">{featured.description}</p>
+							</div>
 						</div>
-					</div>
-
-					<div className=" p-6 border border-lightBorderColor  flex flex-col justify-center items-center  rounded-md">
-						<div className="flex justify-center items-center">
-							<BsFilm className="feature-icon" />
-						</div>
-						<div className="flex flex-col justify-center items-center">
-							<h1 className="text-lg font-bold text-lightTextColor mt-5">Audio</h1>
-
-							<p className="text-lightTextColor">Directly Download Music.</p>
-						</div>
-					</div>
-
-					<div className="p-6 border border-lightBorderColor  flex flex-col justify-center items-center  rounded-md">
-						<div className="flex justify-center items-center">
-							<AiOutlineCheck className="feature-icon" />
-						</div>
-						<div className="flex flex-col justify-center items-center">
-							<h1 className="text-lg font-bold text-lightTextColor">Easy Download</h1>
-
-							<p className="text-lightTextColor">Fully compatible with all browsers.</p>
-						</div>
-					</div>
-
-					<div className="p-6 border border-lightBorderColor  flex flex-col justify-center items-center  rounded-md">
-						<div className="flex justify-center items-center">
-							<FiDownload className="feature-icon" />
-						</div>
-						<div className="flex flex-col justify-center items-center">
-							<h1 className="text-lg font-bold text-lightTextColor">Limits</h1>
-
-							<p className="text-lightTextColor">50 Downloads per day.</p>
-						</div>
-					</div>
-				</div>
+					);
+				})}
 			</div>
 
-			<h1 className=" text-slate-800 text-3xl mt-20 font-medium text-center">
+			<h1 className=" text-foreground text-3xl mt-20 font-medium text-center">
 				Download Audio from
 				<span className="text-red-500 ml-2">
 					YouTube <BsYoutube className="inline" />
 				</span>
 			</h1>
-			<p className="text-slate-700 text-center mt-5">Paste a YouTube link or type in the search box above, select the format you want to convert to, then hit download.</p>
+			<p className="text-muted-foreground text-base leading-5 text-center mt-3">Paste a YouTube link or type in the search box above, select the format you want to convert to, then hit download.</p>
 		</div>
 	);
 };

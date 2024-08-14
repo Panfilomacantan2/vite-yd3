@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { Blurhash } from 'react-blurhash';
-import { Image } from '@mantine/core';
 
 function BlurImage({ img, video }) {
 	const [visible, setVisible] = React.useState(false);
@@ -32,7 +31,7 @@ function BlurImage({ img, video }) {
 	return (
 		
 		<>
-			<Image
+			<img
 				ref={imgRef}
 				src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`}
 				className="h-full grayscale group-hover:grayscale-0"

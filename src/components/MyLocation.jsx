@@ -25,14 +25,14 @@ const MyLocation = () => {
 	};
 
 	const location = (
-		<div className="px-6 py-6 text-white data-theme='dark'">
-			<div className="rounded-md flex justify-center items-center font-thin  gap-2 bg-slate-800 py-4 px-2">
+		<div className="px-6 py-6 ">
+			<div className="rounded-md flex justify-center items-center font-thin  gap-2  py-4 px-2">
 				<span className="flex h-3 w-3 relative">
 					<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
 					<span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
 				</span>
 				{loading && 'Loading...'}
-				<p className='text-[12px]'>
+				<p className="text-sm text-muted-foreground">
 					{locationInfo && locationInfo.city}
 					&nbsp;
 					{locationInfo && locationInfo.countryCode}
