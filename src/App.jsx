@@ -1,8 +1,7 @@
-import { Home, About } from './pages';
-import { Header, Hero, Footer, SearchHistory, MyLocation } from './components';
+import { Home } from './pages';
+import { Header, Hero, Footer, MyLocation } from './components';
 import { ToastContainer } from 'react-toastify';
 import ScrollButton from './components/ScrollButton';
-import { ThemeProvider } from './components/theme-provider';
 
 const App = () => {
 	return (
