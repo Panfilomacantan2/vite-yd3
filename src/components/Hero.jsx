@@ -2,9 +2,16 @@ import React from 'react';
 import { BsYoutube } from 'react-icons/bs';
 import { featuredText } from '@/constant';
 import { cn } from '@/lib/utils';
-import { Download } from 'lucide-react';
+import { Download, AudioLines, Check, Infinity } from 'lucide-react';
 
 const Hero = () => {
+	const icons = [
+		<Download className="w-8 h-8 text-foreground" />,
+		<AudioLines className="w-8 h-8 text-foreground" />,
+		<Check className="w-8 h-8 text-foreground" />,
+		<Infinity className="w-8 h-8 text-foreground" />,
+	];
+
 	return (
 		<div className="w-full px-5 sm:px-10 md:px-20 py-20">
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-5 text-center py-20">
@@ -24,9 +31,7 @@ const Hero = () => {
 								</div>
 							</div>
 							<div className="flex flex-col justify-center items-center text-center p-8">
-								<div className="flex justify-center items-center w-16 h-16 rounded-full shadow-lg">
-									<Download className="w-8 h-8 text-foreground" />
-								</div>
+								<div className="flex justify-center items-center w-16 h-16">{icons[idx]}</div>
 
 								<p
 									className={cn(`font-bold mb-2 text-green-600 text-xl via-md:text-3xl lg:text-2xl`, {
