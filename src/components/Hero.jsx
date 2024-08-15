@@ -51,7 +51,7 @@ const Hero = () => {
 					YouTube <BsYoutube className="inline" />
 				</span>
 			</h1>
-			<p className="text-muted-foreground text-base leading-5 text-center mt-3">Paste a YouTube link or type in the search box above, select the format you want to convert to, then hit download.</p>
+			<p className="text-muted-foreground text-base leading-5 text-center mt-3">Paste a YouTube link or type in the search box above, then hit download.</p>
 		</div>
 	);
 };
