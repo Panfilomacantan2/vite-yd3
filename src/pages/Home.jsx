@@ -2,12 +2,12 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { youtube_parser } from '../utils';
 import { CgArrowRight } from 'react-icons/cg';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useStorage } from '../context/addToStorageContext';
 import { ApiStats } from '../components';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 
 const Home = () => {
 	const inputRef = useRef(null);
@@ -21,18 +21,15 @@ const Home = () => {
 		freePlanResetTime: null,
 	});
 
+	const { toast } = useToast();
+
 	function handleSearch(e) {
 		e.preventDefault();
 
 		if (!inputRef.current.value) {
-			toast.error('Please provide a YouTube link.', {
-				position: 'top-right',
-				autoClose: 2000,
-				progressBar: true,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: false,
+			toast({
+				title: 'Error',
+				description: 'Please enter a valid YouTube URL!',
 			});
 			return;
 		}
@@ -46,14 +43,9 @@ const Home = () => {
 		const items = JSON.parse(localStorage.getItem('items')) || [];
 
 		if (items.includes(youtubeID)) {
-			toast.error(`YouTube video with the ID of ${youtubeID} already exists!`, {
-				position: 'top-right',
-				autoClose: 2000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
+			toast({
+				title: 'Error',
+				description: 'This video has been downloaded already!',
 			});
 		} else {
 			items.push(youtubeID);
@@ -76,14 +68,9 @@ const Home = () => {
 			.then(function (response) {
 				setUrlSearch(response.data.link);
 
-				toast.success('Download link generated successfully', {
-					position: 'top-right',
-					autoClose: 2000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
+				toast({
+					title: 'Success',
+					description: 'Video found! Click the download button to start downloading.',
 				});
 
 				checkRateLimit();
@@ -175,7 +162,7 @@ const Home = () => {
 						Download
 					</Link>
 				) : (
-					<Button disabled className="w-full md:w-[520px] py-6 bg-foreground/50 text-white rounded-md text-center font-semibold cursor-not-allowed flex justify-center items-center gap-2 mx-auto">
+					<Button disabled className="w-full md:w-[520px] py-6 bg-foreground/50 text-white rounded-md text-center font-semibold cursor-not-allowed flex justify-center items-center gap-2 mx-auto" onClick={() => setVideoId('')}>
 						Download
 					</Button>
 				)}
