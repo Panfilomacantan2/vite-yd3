@@ -48,7 +48,7 @@ const Home = () => {
 		setVideoId(youtubeID);
 
 		// Add to localStorage and check if already downloaded
-		const items = JSON.parse(localStorage.getItem('items') || '[]');
+		const items = JSON.parse(localStorage.getItem('items') || []);
 
 		if (items.includes(youtubeID)) {
 			toast({
@@ -58,9 +58,11 @@ const Home = () => {
 			return;
 		}
 
-		items.push(youtubeID);
+		console.log(youtubeID);
+
+		// items.push(youtubeID);
 		localStorage.setItem('items', JSON.stringify(items));
-		setSearchHistory((prevSearch) => [...prevSearch, youtubeID]);
+		setSearchHistory(youtubeID);
 
 		// API call to get the download link
 		const options = {
