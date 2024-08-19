@@ -6,12 +6,20 @@ const StorageProvider = ({ children }) => {
 	const [searchHistory, setSearchHistory] = useState([]);
 
 	useEffect(() => {
-		const storage = JSON.parse(localStorage.getItem('items')) || [];
-
-		if (storage.length !== searchHistory.length) {
-			setSearchHistory(storage);
+		// Safely retrieve items from localStorage
+		let storedItems = [];
+		try {
+			const storage = localStorage.getItem('items');
+			storedItems = storage ? JSON.parse(storage) : [];
+		} catch (error) {
+			console.error('Failed to parse localStorage items:', error);
 		}
-	}, [searchHistory.length]);
+
+		// Update state if the stored items differ from the current state
+		if (JSON.stringify(storedItems) !== JSON.stringify(searchHistory)) {
+			setSearchHistory(storedItems);
+		}
+	}, []);
 
 	const addSearchItem = (item) => {
 		setSearchHistory((prevSearchHistory) => {
@@ -21,7 +29,11 @@ const StorageProvider = ({ children }) => {
 		});
 	};
 
-	return <StorageContext.Provider value={{ searchHistory, setSearchHistory: addSearchItem }}>{children}</StorageContext.Provider>;
+	return (
+		<StorageContext.Provider value={{ searchHistory, setSearchHistory: addSearchItem }}>
+			{children}
+		</StorageContext.Provider>
+	);
 };
 
 const useStorage = () => {
