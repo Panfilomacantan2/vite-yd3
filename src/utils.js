@@ -5,3 +5,8 @@ export function youtube_parser(url) {
 	var match = url.match(regExp);
 	return match && match[7].length == 11 ? match[7] : false;
 }
+
+export function isValidYouTubeLink(url) {
+	const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+	return pattern.test(url);
+}

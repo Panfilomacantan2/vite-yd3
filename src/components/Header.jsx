@@ -1,5 +1,4 @@
 import { ImDownload } from 'react-icons/im';
-import { MdOutlineHistory } from 'react-icons/md';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { Link, useLocation } from 'react-router-dom';
 import { ModeToggle } from './mode-toggle';
@@ -24,7 +23,7 @@ const Header = () => {
 				<p className="text-foreground">Shesh.</p>
 			</Link>
 
-			<ul className="flex justify-center items-center gap-5">
+			<ul className="flex justify-center items-center gap-2">
 				<li>
 					<ModeToggle />
 				</li>

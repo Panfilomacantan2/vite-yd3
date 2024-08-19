@@ -6,20 +6,29 @@ const StorageProvider = ({ children }) => {
 	const [searchHistory, setSearchHistory] = useState([]);
 
 	useEffect(() => {
-		let storage = JSON.parse(localStorage.getItem('items')) || [];
+		const storage = JSON.parse(localStorage.getItem('items')) || [];
 
-		if (storage) {
+		if (storage.length !== searchHistory.length) {
 			setSearchHistory(storage);
 		}
-	}, []);
+	}, [searchHistory.length]);
 
-	return <StorageContext.Provider value={{ searchHistory, setSearchHistory }}>{children}</StorageContext.Provider>;
+	const addSearchItem = (item) => {
+		setSearchHistory((prevSearchHistory) => {
+			const updatedSearchHistory = [...prevSearchHistory, item];
+			localStorage.setItem('items', JSON.stringify(updatedSearchHistory));
+			return updatedSearchHistory;
+		});
+	};
+
+	return <StorageContext.Provider value={{ searchHistory, setSearchHistory: addSearchItem }}>{children}</StorageContext.Provider>;
 };
+
 const useStorage = () => {
 	const context = useContext(StorageContext);
 
 	if (!context) {
-		throw new Error('useStorage must be used within a addToStorageProvider');
+		throw new Error('useStorage must be used within a StorageProvider');
 	}
 
 	return context;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { youtube_parser } from '../utils';
+import { youtube_parser, isValidYouTubeLink } from '../utils';
 import { CgArrowRight } from 'react-icons/cg';
 import 'react-toastify/dist/ReactToastify.css';
 import { useStorage } from '../context/addToStorageContext';
@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 
 const Home = () => {
-	const inputRef = useRef(null);
+	const inputRef = useRef();
 	const [urlSearch, setUrlSearch] = useState(null);
 	const [videoId, setVideoId] = useState('');
 	const { setSearchHistory } = useStorage();
@@ -23,36 +23,46 @@ const Home = () => {
 
 	const { toast } = useToast();
 
-	function handleSearch(e) {
+	const handleSearch = async (e) => {
 		e.preventDefault();
+		const inputValue = inputRef.current?.value.trim();
 
-		if (!inputRef.current.value) {
+		if (!inputValue || !isValidYouTubeLink(inputValue)) {
 			toast({
 				title: 'Error',
 				description: 'Please enter a valid YouTube URL!',
 			});
 			return;
 		}
-		setUrlSearch(inputRef.current.value);
 
-		const youtubeID = youtube_parser(inputRef.current.value);
+		const youtubeID = youtube_parser(inputValue);
+
+		if (!youtubeID) {
+			toast({
+				title: 'Error',
+				description: 'Failed to extract video ID from the URL.',
+			});
+			return;
+		}
 
 		setVideoId(youtubeID);
 
-		//  add to localStorage
-		const items = JSON.parse(localStorage.getItem('items')) || [];
+		// Add to localStorage and check if already downloaded
+		const items = JSON.parse(localStorage.getItem('items') || '[]');
 
 		if (items.includes(youtubeID)) {
 			toast({
-				title: 'Error',
+				title: 'Note',
 				description: 'This video has been downloaded already!',
 			});
-		} else {
-			items.push(youtubeID);
-			localStorage.setItem('items', JSON.stringify(items));
-			setSearchHistory((prevSearch) => [...prevSearch, youtubeID]);
+			return;
 		}
 
+		items.push(youtubeID);
+		localStorage.setItem('items', JSON.stringify(items));
+		setSearchHistory((prevSearch) => [...prevSearch, youtubeID]);
+
+		// API call to get the download link
 		const options = {
 			method: 'GET',
 			url: 'https://youtube-mp36.p.rapidapi.com/dl',
@@ -63,24 +73,26 @@ const Home = () => {
 			},
 		};
 
-		axios
-			.request(options)
-			.then(function (response) {
-				setUrlSearch(response.data.link);
+		try {
+			const response = await axios.request(options);
+			setUrlSearch(response.data.link);
 
-				toast({
-					title: 'Success',
-					description: 'Video found! Click the download button to start downloading.',
-				});
-
-				checkRateLimit();
-			})
-			.catch(function (error) {
-				console.error(error);
+			toast({
+				title: 'Success',
+				description: 'Video found! Click the download button to start downloading.',
 			});
 
+			checkRateLimit();
+		} catch (error) {
+			console.error(error);
+			toast({
+				title: 'Error',
+				description: 'Failed to fetch the download link. Please try again later.',
+			});
+		}
+
 		inputRef.current.value = '';
-	}
+	};
 
 	const checkRateLimit = async () => {
 		const options = {
@@ -127,7 +139,7 @@ const Home = () => {
 				<input
 					className="border-sky-800 border-4 border-r-0 px-5 py-4 outline-none w-full bg-background/80"
 					type="text"
-					placeholder="Paste the youtubre URL here..."
+					placeholder="Paste the YouTube URL here..."
 					name="urlSearch"
 					ref={inputRef}
 					autoComplete="off"
@@ -136,6 +148,7 @@ const Home = () => {
 					<CgArrowRight className="text-white text-2xl group-hover:translate-x-1 duration-300" />
 				</button>
 			</form>
+
 			<p className="text-center mt-5 text-muted-foreground">
 				Please choose your favorite song.{' '}
 				<Link to="https://www.youtube.com/" target="_blank" className="text-sky-500">
@@ -162,7 +175,7 @@ const Home = () => {
 						Download
 					</Link>
 				) : (
-					<Button disabled className="w-full md:w-[520px] py-6 bg-foreground/50 text-white rounded-md text-center font-semibold cursor-not-allowed flex justify-center items-center gap-2 mx-auto" onClick={() => setVideoId('')}>
+					<Button disabled className="w-full md:w-[520px] py-6 bg-foreground/50 text-white rounded-md text-center font-semibold cursor-not-allowed flex justify-center items-center gap-2 mx-auto">
 						Download
 					</Button>
 				)}
