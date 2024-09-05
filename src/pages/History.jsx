@@ -13,7 +13,6 @@ import ScrollButton from '../components/ScrollButton';
 
 const History = () => {
 	const { searchHistory } = useStorage();
-	// const searchHistory = [];
 	const [videoData, setVideoData] = useState([]);
 	const [loading, setLoading] = useState(true);
 
@@ -30,7 +29,6 @@ const History = () => {
 				const data = await res.json();
 				setLoading(false);
 				setVideoData(data.items || []);
-				// setVideoData([]);
 			} catch (error) {
 				console.error('Error fetching video data:', error);
 				setLoading(false);
@@ -90,7 +88,6 @@ const History = () => {
 											<p className="flex items-center justify-center text-[12px] font-bold">
 												<AiOutlineFieldTime className="text-lg" />
 												{dayjs(video.snippet.publishedAt).fromNow()}
-												{/* {console.log(video?.snippet?.publishedAt)} */}
 											</p>
 										</div>
 									</div>
@@ -103,7 +100,7 @@ const History = () => {
 			) : (
 				<div className="h-screen flex flex-col items-center justify-center gap-4">
 					<div className="w-[200px] h-[200px]">
-						<img src="/assets/empty_download.svg" alt="empty download" className="w-full h-full" />
+						<img src="/assets/empty_download.svg" alt="empty download" className="w-full h-full" draggable="false"/>
 					</div>
 					<p className="text-base">No download history yet!</p>
 				</div>
