@@ -74,7 +74,6 @@ const History = () => {
 										<BlurImage img={<img src={video?.snippet?.thumbnails?.maxres?.url} alt="Placeholder" />} video={video} />
 									)}
 								</div>
-								{/* <Image src={video?.snippet?.thumbnails?.maxres?.url || `https://img.youtube.com/vi/${video?.id}/maxresdefault.jpg`} className="grayscale group-hover:grayscale-0" loading="lazy" /> */}
 
 								<div className="px-4 py-4">
 									<div>
@@ -103,7 +102,10 @@ const History = () => {
 				</div>
 			) : (
 				<div className="h-screen flex flex-col items-center justify-center gap-4">
-					<p className="">No search history found!</p>
+					<div className="w-[200px] h-[200px]">
+						<img src="/assets/empty_download.svg" alt="empty download" className="w-full h-full" />
+					</div>
+					<p className="text-base">No download history yet!</p>
 				</div>
 			)}
 		</>

@@ -34,7 +34,7 @@ const Hero = () => {
 								<div className="flex justify-center items-center w-16 h-16">{icons[idx]}</div>
 
 								<p
-									className={cn(`font-bold mb-2 text-green-600 text-xl via-md:text-3xl lg:text-2xl`, {
+									className={cn(`font-bold mb-2 text-green-600 text-2xl via-md:text-3xl lg:text-2xl`, {
 										'text-pink-500': featured.color === 'pink',
 										'text-teal-500': featured.color === 'teal',
 										'text-purple-500': featured.color === 'purple',
