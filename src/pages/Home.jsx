@@ -67,9 +67,9 @@ const Home = () => {
 			items.push(youtubeID);
 			// Save the updated items array to localStorage
 			localStorage.setItem('items', JSON.stringify(items));
+			setSearchHistory(youtubeID);
 		}
 
-		setSearchHistory(youtubeID);
 
 		// API call to get the download link
 		const options = {
