@@ -117,9 +117,8 @@ const Home = () => {
 		try {
 			const response = await axios.request(options);
 
-            if(!response.data) return
+			if (!response.data) return;
 
-			
 			const rateLimit = response.headers['x-ratelimit-request-limit'];
 			const rateLimitRemaining = response.headers['x-ratelimit-request-remaining'];
 			const rateLimitReset = response.headers['x-ratelimit-request-reset'];
@@ -135,7 +134,7 @@ const Home = () => {
 			});
 		} catch (error) {
 			console.error('Error fetching rate limit data:', error);
-            if (error.response.status === 429) {
+			if (error.response.status === 429) {
 				toast({
 					title: 'Rate Limit Exceeded',
 					description: 'You have exceeded the rate limit. Please try again later.',
