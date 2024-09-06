@@ -62,7 +62,6 @@ const Home = () => {
 				title: 'Warning',
 				description: 'This video has been downloaded already!',
 			});
-			return;
 		} else {
 			// Add the video ID to the items array
 			items.push(youtubeID);
@@ -117,6 +116,8 @@ const Home = () => {
 
 		try {
 			const response = await axios.request(options);
+
+            if(!response.data) return
 
 			
 			const rateLimit = response.headers['x-ratelimit-request-limit'];
