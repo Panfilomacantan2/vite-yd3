@@ -77,7 +77,7 @@ const Home = () => {
 			url: 'https://youtube-mp36.p.rapidapi.com/dl',
 			params: { id: youtubeID },
 			headers: {
-				'X-RapidAPI-Key': import.meta.env.VITE_RAPID_API_KEY,
+				'X-RapidAPI-Key': import.meta.env.VITE_RAPID_API,
 				'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com',
 			},
 		};
@@ -109,7 +109,7 @@ const Home = () => {
 			url: 'https://youtube-mp36.p.rapidapi.com/dl',
 			params: { id: '' },
 			headers: {
-				'X-RapidAPI-Key': import.meta.env.VITE_RAPID_API_KEY,
+				'X-RapidAPI-Key': import.meta.env.VITE_RAPID_API,
 				'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com',
 			},
 		};
