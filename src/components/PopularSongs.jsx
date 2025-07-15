@@ -33,13 +33,19 @@ const PopularSongs = () => {
 			<ul className="space-y-4">
 				{songs.map((song) => (
 					<li key={song.id} className="flex items-center gap-4 p-3 rounded-md shadow border ">
-						<img src={song.snippet.thumbnails.medium.url} alt={song.snippet.title} className="w-24 h-16 rounded-md object-cover" />
-						<div className='relative'>
-							<h3 className="font-semibold text-sm">{song.snippet.title}</h3>
-							<a href={`https://www.youtube.com/watch?v=${song.id}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 text-xs underline">
-								Watch on YouTube
-							</a>
-							<Clipboard videoId={song.id} />
+						<img src={song.snippet.thumbnails.medium.url} alt={song.snippet.title} className="w-24 h-20 rounded-md object-cover" />
+						<div className="w-full">
+							<h3 className="font-semibold text-xs">{song.snippet.title}</h3>
+							<p className="text-xs text-gray-500 mt-1">Channel: {song.snippet.channelTitle}</p>
+
+							<div className="relative">
+								<a href={`https://www.youtube.com/watch?v=${song.id}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 text-xs underline">
+									Watch on YouTube
+								</a>
+								<div className="absolute bottom-0 right-0">
+									<Clipboard videoId={song.id} />
+								</div>
+							</div>
 						</div>
 					</li>
 				))}
