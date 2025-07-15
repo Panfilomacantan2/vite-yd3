@@ -11,7 +11,7 @@ import { ClerkProvider } from '@clerk/clerk-react';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE;
 
 if (!PUBLISHABLE_KEY) {
 	throw new Error('Missing Publishable Key');
