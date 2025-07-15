@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { ModeToggle } from './mode-toggle';
 import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from '@clerk/clerk-react';
 
+import { VscHistory } from 'react-icons/vsc';
+
 const Header = () => {
 	const location = useLocation();
 	const { isSignedIn, user, isLoaded } = useUser();
@@ -32,7 +34,7 @@ const Header = () => {
 					</li>
 					<li className="inline-block">
 						<Link to={pathname} className="flex items-center justify-center text-white hover:bg-sky-600 bg-sky-500 px-4 py-[9px] gap-1 rounded-md text-[14px] group">
-							<IoIosArrowRoundBack size={18} className="group-hover:-translate-x-1" /> {''} <span>{location.pathname === '/' ? 'View History' : 'Back'}</span>
+							<span>{location.pathname === '/' ? <VscHistory size={18} /> : "← back"}</span>
 						</Link>
 					</li>
 				</ul>

@@ -3,6 +3,7 @@ import { BsYoutube } from 'react-icons/bs';
 import { featuredText } from '@/constant';
 import { cn } from '@/lib/utils';
 import { Download, AudioLines, Check, Infinity } from 'lucide-react';
+import PopularSongs from './PopularSongs';
 
 const Hero = () => {
 	const icons = [
@@ -57,6 +58,8 @@ const Hero = () => {
 				</span>
 			</h1>
 			<p className="text-muted-foreground text-base leading-5 text-center mt-3">Paste a YouTube link or type in the search box above, then hit download.</p>
+
+			<PopularSongs />
 		</div>
 	);
 };
