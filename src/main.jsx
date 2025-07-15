@@ -7,21 +7,35 @@ import { StorageProvider } from './context/addToStorageContext';
 import { SearchProvider } from './context/searchContext';
 import { ThemeProvider } from './components/theme-provider';
 import { Toaster } from './components/ui/toaster';
+import { ClerkProvider } from '@clerk/clerk-react';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+if (!PUBLISHABLE_KEY) {
+	throw new Error('Missing Publishable Key');
+}
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-				<StorageProvider>
-					<SearchProvider>
-						<Toaster />
-						<Routes>
-							<Route path="/" element={<App />} />
-							<Route path="/history" element={<History />} />
-						</Routes>
-					</SearchProvider>
-				</StorageProvider>
-			</ThemeProvider>
-		</BrowserRouter>
+		<ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+			<BrowserRouter>
+				<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+					<StorageProvider>
+						<SearchProvider>
+							<Toaster />
+							<Routes>
+								<Route path="/" element={<App />} />
+								<Route path="/history" element={<History />} />
+								<Route path="/sign-in" element={<Login />} />
+								<Route path="/sign-up" element={<Signup />} />
+							</Routes>
+						</SearchProvider>
+					</StorageProvider>
+				</ThemeProvider>
+			</BrowserRouter>
+		</ClerkProvider>
 	</React.StrictMode>,
 );

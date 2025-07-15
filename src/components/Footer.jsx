@@ -34,7 +34,7 @@ const Footer = () => {
 				<div>
 					<p>
 						<span>Hosted by </span>
-						<a href="https://www.netlify.com/" target="_blank">
+						<a href="https://www.vercel.com/" target="_blank">
 							Vercel
 						</a>
 					</p>
