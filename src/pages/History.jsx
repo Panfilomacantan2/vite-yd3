@@ -10,6 +10,8 @@ import Header from '../components/Header';
 import Clipboard from '../utils/CopyToClipboard';
 import { BlurImage } from '../components/BlurImage';
 import ScrollButton from '../components/ScrollButton';
+import { Navigate } from 'react-router-dom';
+import { useUser } from '@clerk/clerk-react';
 
 const History = () => {
 	const { searchHistory } = useStorage();
@@ -17,6 +19,14 @@ const History = () => {
 	const [loading, setLoading] = useState(true);
 
 	dayjs.extend(relativeTime);
+
+	const { isSignedIn, user, isLoaded } = useUser();
+	
+		// check if not logged in, redirect to login page
+		if (!user && !isSignedIn) {
+			return <Navigate to="/sign-in" />;
+		}
+	
 
 	useEffect(() => {
 		setLoading(true);
