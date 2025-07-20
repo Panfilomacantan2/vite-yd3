@@ -11,16 +11,15 @@ import { ClerkProvider } from '@clerk/clerk-react';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE;
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
 	throw new Error('Missing Publishable Key');
 }
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+		<ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/" navigate={(to) => window.history.pushState(null, '', to)}>
 			<BrowserRouter>
 				<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
 					<StorageProvider>

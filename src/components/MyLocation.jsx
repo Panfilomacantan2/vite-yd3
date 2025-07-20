@@ -25,8 +25,8 @@ const MyLocation = () => {
 	};
 
 	const location = (
-		<div className="px-6 py-6 ">
-			<div className="rounded-md flex justify-center items-center font-thin  gap-2  py-4 px-2">
+		<div className="px-6">
+			<div className="rounded-md flex justify-center items-center font-normal gap-2 text-xs text-muted-foreground py-2">
 				<span className="flex h-3 w-3 relative">
 					<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
 					<span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
