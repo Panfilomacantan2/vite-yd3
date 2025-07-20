@@ -20,7 +20,7 @@ export default defineConfig({
 		"process.env": {
 			RAPID_API: JSON.stringify(process.env.VITE_RAPID_API),
 			YOUTUBE_DATA_API: JSON.stringify(process.env.VITE_YOUTUBE_DATA_API),
-			CLERK_PUBLISHABLE: JSON.stringify(process.env.VITE_CLERK_PUBLISHABLE),
+			CLERK_PUBLISHABLE_KEY: JSON.stringify(process.env.VITE_CLERK_PUBLISHABLE_KEY),
 		},
 	}
 });

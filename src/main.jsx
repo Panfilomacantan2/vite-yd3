@@ -28,7 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 							<Routes>
 								<Route path="/" element={<App />} />
 								<Route path="/history" element={<History />} />
-								<Route path="/sign-in" element={<Login />} />
+								<Route path="/sign-in/*" element={<Login />} />
 								<Route path="/sign-up" element={<Signup />} />
 							</Routes>
 						</SearchProvider>
